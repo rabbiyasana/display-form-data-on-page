@@ -8,6 +8,79 @@
     <link rel="stylesheet" href="lib/bootstrap-5.0.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="lib/fontawesome-6.2.1/css/all.min.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="container-fluid my-3">
+      <div class="row">
+        <div class="col-4">
+          <div class="card">
+            <div class="card-header bg-primary text-white">
+              <strong><i class="fa fa-gift"></i>Add Product</strong>
+            </div>
+            <div class="card-body">
+              <div class="mb-3">
+                <form>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text"
+                      ><i class="fa fa-arrow-circle-right"></i
+                    ></span>
+                    <select id="ddlCategories" class="form-select">
+                      <option value="0">- Select Category -</option>
+                    </select>
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <span class="input-group-text"
+                      ><i class="fa fa-arrow-circle-right"></i
+                    ></span>
+                    <input
+                      id="txtName"
+                      type="text"
+                      class="form-control"
+                      placeholder="Name"
+                    />
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text"
+                      ><i class="fa fa-arrow-circle-right"></i
+                    ></span>
+                    <input
+                      id="txtPrice"
+                      type="number"
+                      min="500"
+                      step="100"
+                      max="1000000"
+                      class="form-control"
+                      placeholder="Price"
+                    />
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <span class="input-group-text"
+                      ><i class="fa fa-arrow-circle-right"></i
+                    ></span>
+                    <input
+                      id="txtGstRate"
+                      type="number"
+                      min="0"
+                      step="1"
+                      max="100"
+                      class="form-control"
+                      placeholder="GST Rate"
+                    />
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <button id="btnAdd" type="button" class="btn btn-primary">
+                      <i class="fa fa-arrow-circle-right"></i> Add
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
   <script src="lib/bootstrap-5.0.2/js/bootstrap.min.js"></script>
 </html>
