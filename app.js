@@ -33,7 +33,28 @@ class category{
 // creating product class
 class product{
    constructor(id, name , price , gstRate, category){
+    this.id = id;
+    this.name = name;
+    this.price= price;
+    this.gstRate = gstRate;
+    this.category = category;
+}
 
+get category(){
+    return this._category;
+}
+set category(value){
+    
+    return this._category = value;
+}
+gstPrice(){
+    return this.price * this.gstRate / 100 ;
+}
+Total(){
+    return this.price + this.gstPrice();
+}
+Summary(){
+    return `${this.Name},${this.Price},${this.GstAmount()},${this.Total()}`;
 }
 }
 
