@@ -58,6 +58,47 @@ Summary(){
 }
 }
 
+// creating a class to handle data where product's and category's objects will be handled
+
+class dataHandler{
+    constructor(){
+        this._categories = [
+           new category (1, "skin care") ,
+           new category (2, "Hair care") ,
+           new category (3, "Clothig line") 
+        ];
+        let i=0;
+        this._products = [
+            new product(i++,"shampoo", 250, 10,this.categories[1]),
+            new product(i++,"face wash", 550, 10,this.categories[0]),
+            new product(i++,"pants", 1500, 7,this.categories[2])
+        ]
+    }
+    get categories(){
+        let [...newCategoriesArray] = this._categories;
+        return newCategoriesArray;
+    }
+    get products(){
+        let [...newProductsArray] = this._products;
+        return newProductsArray;
+    }
+    AddProduct(name, price, gstRate ,categoryId){
+          let category = this._categories.find((c)=>{
+           c.id = categoryId;
+          })
+          let product=new product(
+            this._products.length+1,
+            name,
+            price,
+            gstRate,
+            category
+        )
+        this._Products.push(product);
+    }
+}
+
+const handler = new dataHandler();
+
 // targeting tags by clicking on  add product button
 document.getElementById("btnAdd").addEventListener("click", ()=>{
     const categories = document.getElementById("ddlCategories");
