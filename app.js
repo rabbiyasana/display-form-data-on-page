@@ -7,28 +7,28 @@ class dataHandler{
            new category (3, "Clothig line") 
         ];
         let i=0;
-        this._products = [
-            new product(i++,"shampoo", 250, 10,this.categories[1]),
-            new product(i++,"face wash", 550, 10,this.categories[0]),
-            new product(i++,"pants", 1500, 7,this.categories[2])
+        this._Products = [
+            new Product(i++,"shampoo", 250, 10,this.categories[1]),
+            new Product(i++,"face wash", 550, 10,this.categories[0]),
+            new Product(i++,"pants", 1500, 7,this.categories[2])
         ]
     }
     get categories(){
         let [...newCategoriesArray] = this._categories;
         return newCategoriesArray;
     }
-    get products(){
-        let [...newProductsArray] = this._products;
+    get Products(){
+        let [...newProductsArray] = this._Products;
         return newProductsArray;
     }
-    AddProduct(name, price, gstRate ,categoryId){
-          let category = this._categories.find(c=>c.Id==categoryId)
-          let product=new product(
-            this._products.length+1,
+    AddProduct(categoryId ,name, price, gstRate){
+          let categoryi = this._categories.find(c=>c.id==categoryId)
+          let product=new Product(
+            this._Products.length+1,
             name,
             price,
             gstRate,
-            category
+            categoryi
         )
         this._Products.push(product);
     }
@@ -36,7 +36,7 @@ class dataHandler{
 
 
 // creating product class
-class product{
+class Product{
    constructor(id, name , price , gstRate, category){
     this.id = id;
     this.name = name;
@@ -117,23 +117,23 @@ class category{
        Number(gstPrice.value)
      );
      loadProducts();
-     categories.value = 0;
-     productName.value = productPrice.value = gstPrice.value = 0;
-     categories.focus();
+    //  categories.value = 0;
+    //  productName.value = productPrice.value = gstPrice.value = 0;
+    //  categories.focus();
    });
 
    function loadProducts() {
-     let table = document.getElementById("tblBody");
-     let products = handler.products;
+     document.getElementById("tblBody").innerHTML = "";
+     let products = handler.Products;
      products.forEach((product) => {
        let template = `<tr>
                     <td>${product.name}</td>
-                    <td>${product.category._name}</td>
+                    <td>${product.category.name}</td>
                     <td>${product.price}</td>
                     <td>${product.gstPrice()}</td>
                     <td>${product.Total()}</td>
  </tr>`;
-       table.innerHTML += template;
+ document.getElementById("tblBody").innerHTML += template;
      });
    }
 
@@ -142,7 +142,7 @@ class category{
    function loadCategories() {
      let categories = handler.categories;
      categories.forEach((c) => {
-       let template = ` <option value="${c._id}">${c._name}</option>`;
+       let template = ` <option value="${c.id}">${c.name}</option>`;
        document.getElementById("ddlCategories").innerHTML += template;
      });
    }
