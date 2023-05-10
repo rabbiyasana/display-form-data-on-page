@@ -20,7 +20,7 @@ class category{
  }
  set name(value){
     if(value.length >= 3 && value.length<=50){
-        this._Name=value;            
+        this._name=value;            
     }
     else {
         console.log("error")
@@ -83,9 +83,7 @@ class dataHandler{
         return newProductsArray;
     }
     AddProduct(name, price, gstRate ,categoryId){
-          let category = this._categories.find((c)=>{
-           c.id = categoryId;
-          })
+          let category = this._categories.find(c=>c.Id==categoryId)
           let product=new product(
             this._products.length+1,
             name,
@@ -109,8 +107,17 @@ document.getElementById("btnAdd").addEventListener("click", ()=>{
     const productName = document.getElementById("txtName");
     const productPrice = document.getElementById("txtPrice");
     const gstPrice = document.getElementById("txtGstRate");
-
+    
+    handler.AddProduct(
+        categories.value,
+        productName.value,
+        Number(productPrice.value),
+        Number(gstPrice.value)        
+    )
     loadProducts();
+    categories.value = 0;
+    productName.value = productPrice.value =gstPrice.value = 0;
+    categories.focus();
 })
 
 function loadProducts(){
@@ -133,7 +140,7 @@ function loadProducts(){
     function loadCategories(){
         let categories = handler.categories;
         categories.forEach((c)=>{
-           let template = ` <option value="${c.id}">${c.name}</option>`;
+           let template = ` <option value="${c._id}">${c._name}</option>`;
            document.getElementById("ddlCategories").innerHTML += template;
         });
     }
