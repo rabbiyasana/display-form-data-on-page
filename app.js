@@ -98,6 +98,10 @@ class dataHandler{
 }
 
 const handler = new dataHandler();
+addEventListener("load", function () {
+    loadProducts();
+    loadCategories();
+  });
 
 // targeting tags by clicking on  add product button
 document.getElementById("btnAdd").addEventListener("click", ()=>{
@@ -105,4 +109,31 @@ document.getElementById("btnAdd").addEventListener("click", ()=>{
     const productName = document.getElementById("txtName");
     const productPrice = document.getElementById("txtPrice");
     const gstPrice = document.getElementById("txtGstRate");
+
+    loadProducts();
 })
+
+function loadProducts(){
+    let table = document.getElementById("tblBody").innerHTML = "";
+    let products = handler.products;
+    products.forEach((product)=>{
+      let template = `<tr>
+                     <td>${product.name}</td>
+                     <td>${product.category}</td>
+                     <td>${product.price}</td>
+                     <td>${product.gstPrice()}</td>
+                     <td>${product.Total()}</td>
+  </tr>`
+  table.innerHTML +=template;
+    });
+}
+
+    // function for loading exixting categories in dropdown
+
+    function loadCategories(){
+        let categories = handler.categories;
+        categories.forEach((c)=>{
+           let template = ` <option value="${c.id}">${c.name}</option>`;
+           document.getElementById("ddlCategories").innerHTML += template;
+        });
+    }
